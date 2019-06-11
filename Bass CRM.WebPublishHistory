@@ -1,0 +1,237 @@
+<PubHist<[1]<type="calendaricons">
+<name="calendaricons">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('12/13/2018 08:35:14 22 am')>
+>
+<[2]<type="folder">
+<name="ExeReportStyles">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('06/10/2019 11:51:11 74 am')>
+>
+<[3]<type="folder">
+<name="AppDataReportStyles">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('06/10/2019 11:51:11 74 am')>
+>
+<[4]<type="folder">
+<name="ExeChartStyles">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('06/10/2019 11:51:11 74 am')>
+>
+<[5]<type="folder">
+<name="AppDataChartStyles">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('06/10/2019 11:51:11 75 am')>
+>
+<[6]<type="A5WPage">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\index.a5w}">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('04/22/2019 12:42:18 05 pm')>
+>
+<[7]<type="WebComponent">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\bass_crm.a5wcmp}">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('06/10/2019 11:51:12 62 am')>
+>
+<[8]<type="css">
+<name="a5system">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('05/30/2019 08:16:39 37 am')>
+>
+<[9]<type="css">
+<name="ios7">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('04/22/2019 12:42:25 02 pm')>
+>
+<[10]<type="file">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\project.securitysettings}">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('05/21/2019 02:17:13 67 pm')>
+>
+<[11]<type="file">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\projectproperties.projectproperties}">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('04/22/2019 12:42:25 13 pm')>
+>
+<[12]<type="css">
+<name="alpha-blue">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('05/30/2019 08:16:44 93 am')>
+>
+<[13]<type="file">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\numeral.js}">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('05/21/2019 02:17:13 70 pm')>
+<project="Default">
+<profile="LAN Publish">
+>
+<[14]<type="WebComponent">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\bass_crm_bak.a5wcmp}">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('01/15/2019 03:12:53 66 pm')>
+>
+<[15]<type="folder">
+<name="ExeReportStyles">
+<target_folder="c:\a5webroot">
+<timestamp=CTODT('04/18/2019 12:29:13 63 pm')>
+>
+<[16]<type="folder">
+<name="AppDataReportStyles">
+<target_folder="c:\a5webroot">
+<timestamp=CTODT('04/18/2019 12:29:13 63 pm')>
+>
+<[17]<type="folder">
+<name="ExeChartStyles">
+<target_folder="c:\a5webroot">
+<timestamp=CTODT('04/18/2019 12:29:13 74 pm')>
+>
+<[18]<type="folder">
+<name="AppDataChartStyles">
+<target_folder="c:\a5webroot">
+<timestamp=CTODT('04/18/2019 12:29:13 74 pm')>
+>
+<[19]<type="WebComponent">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\bass_crm.a5wcmp}">
+<target_folder="c:\a5webroot">
+<timestamp=CTODT('04/18/2019 12:29:14 38 pm')>
+>
+<[20]<type="css">
+<name="a5system">
+<target_folder="c:\a5webroot">
+<timestamp=CTODT('04/18/2019 12:29:14 58 pm')>
+>
+<[21]<type="css">
+<name="alpha-blue">
+<target_folder="c:\a5webroot">
+<timestamp=CTODT('04/18/2019 12:29:15 73 pm')>
+>
+<[22]<type="file">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\project.securitysettings}">
+<target_folder="c:\a5webroot">
+<timestamp=CTODT('04/18/2019 12:29:15 79 pm')>
+>
+<[23]<type="file">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\numeral.js}">
+<target_folder="c:\a5webroot">
+<timestamp=CTODT('04/18/2019 12:29:15 80 pm')>
+>
+<[24]<type="A5WPage">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\index.a5w}">
+<target_folder="c:\a5webroot">
+<timestamp=CTODT('04/16/2019 03:24:25 22 pm')>
+>
+<[25]<type="css">
+<name="ios7">
+<target_folder="c:\a5webroot">
+<timestamp=CTODT('04/16/2019 03:24:26 28 pm')>
+>
+<[26]<type="file">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\projectproperties.projectproperties}">
+<target_folder="c:\a5webroot">
+<timestamp=CTODT('04/16/2019 03:24:26 33 pm')>
+>
+<[27]<type="css">
+<name="alpha">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('05/30/2019 08:16:44 63 am')>
+>
+<[28]<type="file">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\core.js}">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('05/21/2019 02:17:13 68 pm')>
+<project="Default">
+<profile="LAN Publish">
+>
+<[29]<type="file">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\date.js}">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('05/21/2019 02:17:13 69 pm')>
+<project="Default">
+<profile="LAN Publish">
+>
+<[30]<type="file">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\core.js}">
+<target_folder="c:\a5webroot">
+<timestamp=CTODT('04/18/2019 12:29:15 79 pm')>
+>
+<[31]<type="file">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\date.js}">
+<target_folder="c:\a5webroot">
+<timestamp=CTODT('04/18/2019 12:29:15 80 pm')>
+>
+<[32]<type="WebComponent">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\bass_crm_bak.a5wcmp}">
+<target_folder="c:\a5webroot">
+<timestamp=CTODT('04/15/2019 01:10:18 79 pm')>
+>
+<[33]<type="css">
+<name="alpha">
+<target_folder="c:\a5webroot">
+<timestamp=CTODT('04/18/2019 12:29:15 54 pm')>
+>
+<[34]<type="calendaricons">
+<name="calendaricons">
+<target_folder="d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\__alphalaunch.alphalaunch\_files\bass_crm_03f6b17c41f5479babf438cb0e73332c">
+<timestamp=CTODT('06/11/2019 02:45:43 50 pm')>
+>
+<[35]<type="folder">
+<name="ExeReportStyles">
+<target_folder="d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\__alphalaunch.alphalaunch\_files\bass_crm_03f6b17c41f5479babf438cb0e73332c">
+<timestamp=CTODT('06/11/2019 02:45:43 68 pm')>
+>
+<[36]<type="folder">
+<name="AppDataReportStyles">
+<target_folder="d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\__alphalaunch.alphalaunch\_files\bass_crm_03f6b17c41f5479babf438cb0e73332c">
+<timestamp=CTODT('06/11/2019 02:45:43 84 pm')>
+>
+<[37]<type="folder">
+<name="ExeChartStyles">
+<target_folder="d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\__alphalaunch.alphalaunch\_files\bass_crm_03f6b17c41f5479babf438cb0e73332c">
+<timestamp=CTODT('06/11/2019 02:45:44 01 pm')>
+>
+<[38]<type="folder">
+<name="AppDataChartStyles">
+<target_folder="d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\__alphalaunch.alphalaunch\_files\bass_crm_03f6b17c41f5479babf438cb0e73332c">
+<timestamp=CTODT('06/11/2019 02:45:44 17 pm')>
+>
+<[39]<type="WebComponent">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\bass_crm.a5wcmp}">
+<target_folder="d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\__alphalaunch.alphalaunch\_files\bass_crm_03f6b17c41f5479babf438cb0e73332c">
+<timestamp=CTODT('06/11/2019 02:45:44 94 pm')>
+>
+<[40]<type="css">
+<name="a5system">
+<target_folder="d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\__alphalaunch.alphalaunch\_files\bass_crm_03f6b17c41f5479babf438cb0e73332c">
+<timestamp=CTODT('06/11/2019 02:45:45 13 pm')>
+>
+<[41]<type="css">
+<name="alpha">
+<target_folder="d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\__alphalaunch.alphalaunch\_files\bass_crm_03f6b17c41f5479babf438cb0e73332c">
+<timestamp=CTODT('06/11/2019 02:45:45 90 pm')>
+>
+<[42]<type="css">
+<name="alpha-blue">
+<target_folder="d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\__alphalaunch.alphalaunch\_files\bass_crm_03f6b17c41f5479babf438cb0e73332c">
+<timestamp=CTODT('06/11/2019 02:45:46 14 pm')>
+>
+<[43]<type="file">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\project.securitysettings}">
+<target_folder="d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\__alphalaunch.alphalaunch\_files\bass_crm_03f6b17c41f5479babf438cb0e73332c">
+<timestamp=CTODT('06/11/2019 02:45:46 17 pm')>
+>
+<[44]<type="file">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\core.js}">
+<target_folder="d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\__alphalaunch.alphalaunch\_files\bass_crm_03f6b17c41f5479babf438cb0e73332c">
+<timestamp=CTODT('06/11/2019 02:45:46 17 pm')>
+>
+<[45]<type="file">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\date.js}">
+<target_folder="d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\__alphalaunch.alphalaunch\_files\bass_crm_03f6b17c41f5479babf438cb0e73332c">
+<timestamp=CTODT('06/11/2019 02:45:46 18 pm')>
+>
+<[46]<type="file">
+<name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\numeral.js}">
+<target_folder="d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\__alphalaunch.alphalaunch\_files\bass_crm_03f6b17c41f5479babf438cb0e73332c">
+<timestamp=CTODT('06/11/2019 02:45:46 18 pm')>
+>
+>

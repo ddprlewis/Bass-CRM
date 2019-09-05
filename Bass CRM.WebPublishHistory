@@ -6,22 +6,22 @@
 <[2]<type="folder">
 <name="ExeReportStyles">
 <target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
-<timestamp=CTODT('08/05/2019 12:29:45 24 pm')>
+<timestamp=CTODT('09/05/2019 03:07:03 01 pm')>
 >
 <[3]<type="folder">
 <name="AppDataReportStyles">
 <target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
-<timestamp=CTODT('08/05/2019 12:29:45 25 pm')>
+<timestamp=CTODT('09/05/2019 03:07:03 01 pm')>
 >
 <[4]<type="folder">
 <name="ExeChartStyles">
 <target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
-<timestamp=CTODT('08/05/2019 12:29:45 25 pm')>
+<timestamp=CTODT('09/05/2019 03:07:03 02 pm')>
 >
 <[5]<type="folder">
 <name="AppDataChartStyles">
 <target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
-<timestamp=CTODT('08/05/2019 12:29:45 25 pm')>
+<timestamp=CTODT('09/05/2019 03:07:03 02 pm')>
 >
 <[6]<type="A5WPage">
 <name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\index.a5w}">
@@ -41,7 +41,7 @@
 <[9]<type="css">
 <name="ios7">
 <target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
-<timestamp=CTODT('04/22/2019 12:42:25 02 pm')>
+<timestamp=CTODT('09/05/2019 03:07:03 97 pm')>
 >
 <[10]<type="file">
 <name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\project.securitysettings}">
@@ -262,6 +262,23 @@
 <name="{d:\development\aphaanywhere\bass-crm\bass crm.webprojects\default.webproject\numeral.js}">
 <target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
 <timestamp=CTODT('06/18/2019 09:37:26 17 am')>
+<project="Default">
+<profile="LAN Publish">
+>
+<[52]<type="A5WPage">
+<name="{d:\development\aphaanywhere\bass-crm\bass crm.webprojects\default.webproject\index.a5w}">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('09/05/2019 03:07:03 32 pm')>
+>
+<[53]<type="WebComponent">
+<name="{d:\development\aphaanywhere\bass-crm\bass crm.webprojects\default.webproject\bass_crm_bak.a5wcmp}">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('09/05/2019 03:07:03 70 pm')>
+>
+<[54]<type="file">
+<name="{d:\development\aphaanywhere\bass-crm\bass crm.webprojects\default.webproject\projectproperties.projectproperties}">
+<target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
+<timestamp=CTODT('09/05/2019 03:07:04 48 pm')>
 <project="Default">
 <profile="LAN Publish">
 >

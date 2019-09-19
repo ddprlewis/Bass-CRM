@@ -6,22 +6,22 @@
 <[2]<type="folder">
 <name="ExeReportStyles">
 <target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
-<timestamp=CTODT('09/05/2019 03:07:03 01 pm')>
+<timestamp=CTODT('09/19/2019 07:29:21 82 am')>
 >
 <[3]<type="folder">
 <name="AppDataReportStyles">
 <target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
-<timestamp=CTODT('09/05/2019 03:07:03 01 pm')>
+<timestamp=CTODT('09/19/2019 07:29:21 82 am')>
 >
 <[4]<type="folder">
 <name="ExeChartStyles">
 <target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
-<timestamp=CTODT('09/05/2019 03:07:03 02 pm')>
+<timestamp=CTODT('09/19/2019 07:29:21 82 am')>
 >
 <[5]<type="folder">
 <name="AppDataChartStyles">
 <target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
-<timestamp=CTODT('09/05/2019 03:07:03 02 pm')>
+<timestamp=CTODT('09/19/2019 07:29:21 82 am')>
 >
 <[6]<type="A5WPage">
 <name="{d:\development\aphaanywhere\bass crm\bass crm.webprojects\default.webproject\index.a5w}">
@@ -237,7 +237,7 @@
 <[47]<type="WebComponent">
 <name="{d:\development\aphaanywhere\bass-crm\bass crm.webprojects\default.webproject\bass_crm.a5wcmp}">
 <target_folder=""+chr(92)+chr(92)+"bass-alpha\c$\a5webroot\crm">
-<timestamp=CTODT('08/05/2019 12:29:46 02 pm')>
+<timestamp=CTODT('09/19/2019 07:29:22 50 am')>
 >
 <[48]<type="file">
 <name="{d:\development\aphaanywhere\bass-crm\bass crm.webprojects\default.webproject\project.securitysettings}">

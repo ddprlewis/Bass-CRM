@@ -11,7 +11,7 @@
         "A5ContainerClassPadding": "0px",
         "A5ContainerClassPaddingForContainerWidthMode": "4px",
         "JavaScriptLinkedFiles": "numeral.js,core.js,date.js",
-        "JavaScriptFunctionDeclarations": "function validateUser() {\n\tvar lcUser     = {dialog.object}.getValue('USERID');\n\tvar lcPassword = {dialog.object}.getValue('PASSWORD');\n//\tvar llRemember = {dialog.object}.getValue('REMEMBERLOGIN');\n\tvar llCont     = true;\n\tvar lcPrompt   = '';\n\tvar lcValue    = '';\n\n    if(lcUser.length == 0) {\n    \t//Attempt to use the data from local storage instead\n\t\tlcUser = localStorage.getItem('USER');\n\t\tlcPassword = localStorage.getItem('PW');\n    }\n\n\tif(lcUser.length == 0) {\n\t\tllCont = false;\n\t\tlcPrompt = 'User cannot be blank.';\n\t\tlcValue  = 'USERID';\n\t}\n\t\n\tif(llCont && lcPassword.length == 0) {\n\t\tllCont = false;\n\t\tlcPrompt = 'Password cannot be blank.';\n\t\tlcValue = 'PASSWORD';\n\t}\n\t\n\tif(llCont) {\n\t\tlcUser = lcUser.substr(0, 4).toUpperCase();\n\t\t{dialog.object}.setValue('USERID', lcUser);\n\t\t{dialog.object}.ajaxCallback('','','xbvalidateuser','','',{deviceOfflineFunction: function() {   }});\n\t} else {\n\t\talert(lcPrompt);\n\t\t{dialog.object}.setValue(lcValue);\n\t}\n}\n\n//-----------------------------------\n\nfunction callChangeUser() {\n\tsetControlBar('LayoutLogin');\n\t{dialog.object}.setValue('COMPANYSEARCH', '');\n\t{dialog.object}.setValue('HISTORYFILTER', '');\n\t{dialog.object}.setValue('USERID', '');\n\t{dialog.object}.setValue('PASSWORD', '');\n//\t{dialog.object}.setValue('REMEMBERLOGIN', false);\n\t{dialog.object}.panelSetActive('PANELCARD_LOGIN', false);\n//\tlocalStorage.setItem('USER','');\n//\tlocalStorage.setItem('PW','');\n//\tlocalStorage.setItem('REMEMBER','NO')\n\n\t{dialog.object}.setFocus('USERID');\n}\n\n//-----------------------------------\n\nfunction callCompany() {\n\t\tvar listObj = {dialog.object}.getControl('COMPANYLIST');\n\t\tvar lcFilter = {dialog.object}.getValue('COMPANYLIST_KEYWORDSEARCH');\n\tsetControlBar('LayoutCompany');\n\t{dialog.object}.panelSetActive('PANELCARD_COMPANY', false);\n//\tif(!lcFilter.length == 0) {\n//\t\t{dialog.object}.getControl('COMPANYLIST').searchList({searchMode : 'auto'});\n//\t\t{dialog.object}.hideContainerWindow('CONTAINER_COMPANYSEARCH');\t\t\n//\t} \n//\tlistObj.setFilter({custstat: 'A'});\n}\n\n//-----------------------------------\n\nfunction callContact() {\n\tsetControlBar('LayoutContact');\n\t{dialog.object}.panelSetActive('PANELCARD_CONTACT', false);\n}\n\n//-----------------------------------\n\nfunction showCompanySearchField(loObject) {\n\t{dialog.object}.showContainerWindow(loObject,'CONTAINER_COMPANYSEARCH');\n\t{dialog.object}.setFocus('COMPANYLIST_KEYWORDSEARCH');\n}\n\n//-----------------------------------\n\nfunction setControlBar(lcLayout) {\n\tvar loCBar = {dialog.object}.getControl('CONTROLBAR_HEADER');\n\tvar lcCustno = {Dialog.object}.getValue('custno');\n\tif(loCBar) {\n\t\tvar varNames = ['VP_CUSTNO'];\n\t\tvar dataValues = [lcCustno];\n\t\tloCBar.update(varNames,dataValues,false,false,false);\n\t\tloCBar.setLayout(lcLayout);\n\t}\n\tvar loCBar = {dialog.object}.getControl('CONTROLBAR_FOOTER');\n\tvar lcUserID = 'User: ' + {dialog.object}.getValue('USERID');\n\tif(loCBar) {\n//\t\tvar varNames = ['userid'];\n//\t\tvar dataValues = [lcUserID];\n//\t\tloCBar.update(varNames,dataValues,false,false,false);\n\t\tloCBar.setLayout(lcLayout);\n\t}\n}\n\n//-----------------------------------\n\nfunction deleteContact() {\n\tvar lnContID = {dialog.object}.getValue('list::COMPANYLIST::contnum');\n\t{dialog.object}.setValue('CONTID', lnContID);\n\n\t{dialog.object}.ajaxCallback('','','xbdeletecontact','','',{deviceOfflineFunction: function() {   }});\n}\n\n//-----------------------------------\n\nfunction showHistorySearchField(loObject) {\n\t{dialog.object}.showContainerWindow(loObject,'CONTAINER_HISTORYSEARCH');\n\t{dialog.object}.setFocus('SEARCH_reason');\n}\n\n//-----------------------------------\n\nfunction callHistory() {\n\tvar lcCustno = {dialog.object}.getValue('list::COMPANYLIST::custno');\n\t{dialog.object}.setValue('CUSTNO', lcCustno);\n\n\tsetControlBar('LayoutHistory');\n\t{dialog.object}.refreshListData('HISTORYLIST',{mode: 'incremental'});\n\t{dialog.object}.panelSetActive('PANELCARD_HISTORY', false);\n}\n\n//-----------------------------------\n\nfunction formatTime(date) {\n  var hours = date.getHours();\n  var minutes = date.getMinutes();\n  var ampm = hours >= 12 ? 'pm' : 'am';\n  hours = hours % 12;\n  hours = hours ? hours : 12; // the hour '0' should be '12'\n  minutes = minutes < 10 ? '0'+minutes : minutes;\n  var strTime = hours + ':' + minutes + ' ' + ampm;\n  return strTime;\n}\n\n//-----------------------------------\n\nfunction formatDate(date) {\n  return date.getMonth()+1 + \"/\" + date.getDate() + \"/\" + date.getFullYear();\n}\n\n//-----------------------------------\n\nfunction formatDateTime(date) {\n  var hours = date.getHours();\n  var minutes = date.getMinutes();\n  var ampm = hours >= 12 ? 'pm' : 'am';\n  hours = hours % 12;\n  hours = hours ? hours : 12; // the hour '0' should be '12'\n  minutes = minutes < 10 ? '0'+minutes : minutes;\n  var strTime = hours + ':' + minutes + ' ' + ampm;\n  return date.getMonth()+1 + \"/\" + date.getDate() + \"/\" + date.getFullYear() + \"  \" + strTime;\n}\n\n//-----------------------------------\n\nfunction callViewHistory() {\n\tvar lcCustno = {dialog.object}.getValue('list::COMPANYLIST::custno');\n\t{dialog.object}.setValue('CUSTNO', lcCustno);\n\n\tsetControlBar('LayoutViewHistory');\n\t{dialog.object}.panelSetActive('PANELCARD_HISTORYVIEW', false);\n}\n\n//-----------------------------------\n\nfunction createNewHistory() {\n\t//-- Create new history record\n\tvar lObj = {dialog.object}.getControl('HISTORYLIST');\n\tlObj.newDetailViewRecord();\n\n\t//-- Default system maintained fields\n\tvar lcCustno = {dialog.object}.getValue('list::COMPANYLIST::custno');\n\tvar lnContnum = {dialog.object}.getValue('list::COMPANYLIST::contnum');\n\tvar lcUser = {dialog.object}.getValue('USERID');\n\t{dialog.object}.setValue('CUSTNO', lcCustno);\n\t{dialog.object}.setValue('HISTCUSTNO', lcCustno);\n\t{dialog.object}.setValue('CONTNUM', lnContnum);\n\t{dialog.object}.setValue('CONTID', lnContnum);\n\t{dialog.object}.setValue('ADDUSER', lcUser);\n\n\tvar ltCurDateTime = new Date();\n\tvar ldDate = formatDate(ltCurDateTime);\n\tvar lcTime = formatTime(ltCurDateTime);\n\tvar lcCurTime = formatDateTime(ltCurDateTime);\n\t{dialog.object}.setValue('ADDDATE', ldDate);\n\t{dialog.object}.setValue('ADDTIME', lcTime);\n\t{dialog.object}.setValue('CONTDATE', lcCurTime);\n}\n\n//-----------------------------------\n\nfunction showPhoneNumbers(loObject) {\n\tvar lcPhone = {dialog.object}.getValue('list::COMPANYLIST::phone');\n\tvar lcDirect = {dialog.object}.getValue('list::COMPANYLIST::contphone');\n\tvar lcCell = {dialog.object}.getValue('list::COMPANYLIST::contcell');\n\t{dialog.object}.setValue('PHONE', lcPhone);\n\t{dialog.object}.setValue('CONTPHONE', lcDirect);\n\t{dialog.object}.setValue('CONTCELL', lcCell);\n\n\tvar lObj = {dialog.object}.getControl('BUTTON_MAINPHONE');\n\tlObj.html = 'M:' + lcPhone;\n\tlObj.refresh();\n\tvar lObj = {dialog.object}.getControl('BUTTON_DIRECTPHONE');\n\tlObj.html = 'D:' + lcDirect;\n\tlObj.refresh();\n\tvar lObj = {dialog.object}.getControl('BUTTON_CELLPHONE');\n\tlObj.html = 'C:' + lcCell;\n\tlObj.refresh();\n\t{dialog.object}.showContainerWindow(loObject,'CONTAINER_PHONENUMBERS');\n}\n\n\n//-----------------------------------\n\nfunction callHistoryScreen() {\n\tvar llOnline = {dialog.Object}._getOnlineStatus();\n\tvar lcCustno = {dialog.object}.getValue('list::COMPANYLIST::custno');\n\t{dialog.object}.setValue('CUSTNO', lcCustno);\n\n\tif(llOnline == true) {\n\t\t{dialog.object}.ajaxCallback('','','xbcallHistory','','',{deviceOfflineFunction: function() {   }});\t\n\t} else {\n\t\talert('Currently offline.  ERP options are limited to online only.');\n\t}\n}\n\n//-----------------------------------\n\nfunction callOrders(lnType) {\n\tvar lcCustno = {dialog.object}.getValue('list::COMPANYLIST::custno');\n\t{dialog.object}.setValue('CUSTNO', lcCustno);\n\n\tvar lcFilter = '';\n\tvar lcLayout = '';\n\tvar loObj = {dialog.object}.getControl('ORDERLIST');\n\tvar llOnline = {dialog.Object}._getOnlineStatus();\n\n\tvar options = {\n\t\tkeepFocusOnCurrentSelection: true,\n\t\tsetFocusToValue: '',\n\t\trefreshDependentLists: false,\n\t\tonlyRefreshDependentLists: false,\n\t\tpreserveCurrentFilterOrder: false\n\t};\n\t{dialog.object}.refreshListData('ORDERLIST',options);\t\n\t\n\tif(llOnline == true) {\n\t\tif(lnType == 1) {\n\t\t\tloObj.setFilter(function(data) {\n\t\t\t\tif(data.sotype == 'B') {return false; }\n\t\t\t\telse {return true;}\n\t\t\t});\n\t\t\tlcLayout = 'LayoutOrders';\n\t\t} else {\n\t\t\tloObj.setFilter(function(data) {\n\t\t\t\tif(data.sotype == 'B') {return true; }\n\t\t\t\telse {return false;}\n\t\t\t});\n\t\t\tlcLayout = 'LayoutBids';\n\t\t}\n\t\tsetControlBar(lcLayout);\n\t\t{dialog.object}.panelSetActive('PANELCARD_ORDERS', false);\n\t} else {\n\t\talert('Currently offline.  ERP options are limited to online only.');\n\t}\n}\n//-----------------------------------\n\nfunction formatCurrency(amount) {\n\treturn numeral(amount).format('($0,0.00)')\n}\n\n//-----------------------------------\n\nfunction filterCompanyList() {\n\tvar searchFor = {dialog.object}.getValue('COMPANYLIST_KEYWORDSEARCH');\n\tvar listObj = {dialog.object}.getControl('COMPANYLIST');\n\tlistObj.filterListClientSide(searchFor);\n\t{dialog.object}.hideContainerWindow('CONTAINER_COMPANYSEARCH');\n}\n\n//-----------------------------------\n\n\nfunction loadCompany() {\n//\t{dialog.object}.setValue('HISTORYFILTER', '');\n\tfilterCompanyList();\n//\tfilterHistoryList();\n\tvar options = {\n\t\tkeepFocusOnCurrentSelection: true,\n\t\trefreshDependentLists: true,\n\t\tonlyRefreshDependentLists: false\n\t};\n\t{dialog.object}.refreshListData('COMPANYLIST',options);\n\tcallCompany();\n}\n\n//-----------------------------------\n\nfunction callInvoices() {\n\tvar lcCustno = {dialog.object}.getValue('list::COMPANYLIST::custno');\n\t{dialog.object}.setValue('CUSTNO', lcCustno);\n\n\tsetControlBar('LayoutInvoices');\n\tvar lObj = {dialog.object}.getControl('INVOICESLIST');\n\tvar llOnline = {dialog.Object}._getOnlineStatus();\n\n\tif(llOnline == true) {\n\t\tlObj.setGroupCollapse({groups: 'all'},true,false); // collapse all groups without animation\n\t\n\t\t//Refresh Invoice List\n\t\tvar options = {\n\t\t\tkeepFocusOnCurrentSelection: false,\n\t\t\trefreshDependentLists: false,\n\t\t\tonlyRefreshDependentLists: false\n\t\t};\n\t\t{dialog.object}.refreshListData('INVOICESLIST',options);\n\n\t\t{dialog.object}.panelSetActive('PANELCARD_INVOICES', false);\n\t} else {\n\t\talert('Currently offline.  ERP options are limited to online only.');\n\t}\n}\n\n//-----------------------------------\n\nfunction filterHistoryList() {\n\tvar searchFor = {dialog.object}.getValue('SEARCH_reason');\n\tvar listObj = {dialog.object}.getControl('HISTORYLIST');\n\tlistObj.filterListClientSide(searchFor);\n\t{dialog.object}.hideContainerWindow('CONTAINER_HISTORYSEARCH');\n}\n\n//-----------------------------------\n\nfunction filterInvoiceList() {\n\tvar searchFor = {dialog.object}.getValue('INVOICELIST_FILTER');\n\tvar listObj = {dialog.object}.getControl('INVOICESLIST');\n\tlistObj.filterListClientSide(searchFor);\n\t{dialog.object}.hideContainerWindow('CONTAINER_INVOICEFILTER');\n}\n\n//-----------------------------------\n\nfunction showInvoiceFilter(loObject) {\n\t{dialog.object}.showContainerWindow(loObject,'CONTAINER_INVOICEFILTER');\n\t{dialog.object}.setFocus('INVOICELIST_FILTER');\n}\n\n//-----------------------------------\n\nfunction showOrderFilter(loObject) {\n\t{dialog.object}.showContainerWindow(loObject,'CONTAINER_ORDERFILTER');\n\t{dialog.object}.setFocus('ORDERLIST_FILTER');\n}\n\n//-----------------------------------\n\nfunction filterOrderList() {\n\tvar searchFor = {dialog.object}.getValue('ORDERLIST_FILTER');\n\tvar listObj = {dialog.object}.getControl('ORDERLIST');\n\tlistObj.filterListClientSide(searchFor);\n\t{dialog.object}.hideContainerWindow('CONTAINER_ORDERFILTER');\n}\n\n//-----------------------------------\n\nfunction callViewNote() {\n\tvar lcNote = {dialog.object}.getValue('list::COMPANYLIST::cstmemo');\n\t{dialog.object}.setValue('CSTMEMO', lcNote);\n\tsetControlBar('LayoutViewNote');\n\t{dialog.object}.panelSetActive('PANELCARD_CUSTNOTE', false);\n}\n\n//-----------------------------------\n\nfunction refreshData() {\n\tvar listObj = {dialog.object}.getControl('COMPANYLIST');\n\tvar llOnline = {dialog.Object}._getOnlineStatus();\n\t\n\tif(llOnline == true) {\n\t\tvar flag = listObj.listIsDirty();\n\t\tif(flag && confirm('Records have been added or changed.  Synchronize unsaved?  NOTE: Cancel will discard unsaved information.')) { \n//\t\tif(flag) { \n\t\t\tA5.executeThisThenThat(synchLists, refreshLists);\n\t\t} else {\n\t\t\trefreshLists();\n\t\t}\n\t} else {\n\t\talert('You are currently offline.  Cannot refresh data.');\n\t}\n}\n\n//-----------------------------------\n\nfunction synchLists() {\n//\tvar lisObj = {dialog.object}.getControl('HISTORYLIST');\n//\tvar flag = listObj.listIsDirty();\n//\tif (flag) {\n//\t\tA5.executeThisThenThat(synchHistory, synchAll);\n//\t} else {\n\t\tsynchAll();\n//\t}\n}\n\n//-----------------------------------\n\nfunction synchHistory() {\n//\t{dialog.object}.saveListEdits('HISTORYLIST',{rows: 'allRows'});\n//\t{dialog.object}.saveListEdits('HISTORYLIST',{rows: 'allRows', ajax: { timeOut: 15000, onAjaxFail: function() { } , onDeviceOffline: function() { } } });\n\t{dialog.object}.saveListEdits('HISTORYLIST',{rows: 'current', ajax: { timeOut: 15000, onAjaxFail: function() { } , onDeviceOffline: function() { } } });\n}\n\n//-----------------------------------\n\nfunction synchAll() {\n\t{dialog.object}.synchronizeLists();\n}\n\n//-----------------------------------\n\nfunction refreshLists() {\n\t{dialog.object}.refreshListData('COMPANYLIST',{mode: 'incremental'});\n}\n\n//-----------------------------------\n\nfunction saveHistory() {\n\t//Save record to list\n\tvar lObj = {dialog.object}.getControl('HISTORYLIST');\n\tif(lObj.selection[0] != 'undefined') { \n\t\tlObj._selectedRow = lObj.selection[0];\n\t}\n\tlObj.updateListFromUXControls();\n\tsetTimeout(function() {}, 500);\n}\n\n//-----------------------------------\n\nfunction saveContact() {\n\tvar llOnline = {dialog.Object}._getOnlineStatus();\n\t\n\tif(llOnline == true) {\n\t\t{dialog.object}.ajaxCallback('','','xbsavecontact','','',{deviceOfflineFunction: function() {   }});\t\n\t} else {\n\t\talert('Cannot save contact information when not online.  Save cancelled.');\n\t\tcallCompany();\n\t}\n}\n\n//-----------------------------------\n\n",
+        "JavaScriptFunctionDeclarations": "function validateUser() {\n\tvar lcUser     = {dialog.object}.getValue('USERID');\n\tvar lcPassword = {dialog.object}.getValue('PASSWORD');\n//\tvar llRemember = {dialog.object}.getValue('REMEMBERLOGIN');\n\tvar llCont     = true;\n\tvar lcPrompt   = '';\n\tvar lcValue    = '';\n\n    if(lcUser.length == 0) {\n    \t//Attempt to use the data from local storage instead\n\t\tlcUser = localStorage.getItem('USER');\n\t\tlcPassword = localStorage.getItem('PW');\n    }\n\n\tif(lcUser.length == 0) {\n\t\tllCont = false;\n\t\tlcPrompt = 'User cannot be blank.';\n\t\tlcValue  = 'USERID';\n\t}\n\t\n\tif(llCont && lcPassword.length == 0) {\n\t\tllCont = false;\n\t\tlcPrompt = 'Password cannot be blank.';\n\t\tlcValue = 'PASSWORD';\n\t}\n\t\n\tif(llCont) {\n\t\tlcUser = lcUser.substr(0, 4).toUpperCase();\n\t\t{dialog.object}.setValue('USERID', lcUser);\n\t\t{dialog.object}.ajaxCallback('','','xbvalidateuser','','',{deviceOfflineFunction: function() {   }});\n\t} else {\n\t\talert(lcPrompt);\n\t\t{dialog.object}.setValue(lcValue);\n\t}\n}\n\n//-----------------------------------\n\nfunction callChangeUser() {\n\tsetControlBar('LayoutLogin');\n\t{dialog.object}.setValue('COMPANYSEARCH', '');\n\t{dialog.object}.setValue('HISTORYFILTER', '');\n\t{dialog.object}.setValue('USERID', '');\n\t{dialog.object}.setValue('PASSWORD', '');\n//\t{dialog.object}.setValue('REMEMBERLOGIN', false);\n\t{dialog.object}.panelSetActive('PANELCARD_LOGIN', false);\n//\tlocalStorage.setItem('USER','');\n//\tlocalStorage.setItem('PW','');\n//\tlocalStorage.setItem('REMEMBER','NO')\n\n\t{dialog.object}.setFocus('USERID');\n}\n\n//-----------------------------------\n\nfunction callCompany() {\n\t\tvar listObj = {dialog.object}.getControl('COMPANYLIST');\n\t\tvar lcFilter = {dialog.object}.getValue('COMPANYLIST_KEYWORDSEARCH');\n\tsetControlBar('LayoutCompany');\n\t{dialog.object}.panelSetActive('PANELCARD_COMPANY', false);\n//\tif(!lcFilter.length == 0) {\n//\t\t{dialog.object}.getControl('COMPANYLIST').searchList({searchMode : 'auto'});\n//\t\t{dialog.object}.hideContainerWindow('CONTAINER_COMPANYSEARCH');\t\t\n//\t} \n//\tlistObj.setFilter({custstat: 'A'});\n}\n\n//-----------------------------------\n\nfunction callContact() {\n\tsetControlBar('LayoutContact');\n\t{dialog.object}.panelSetActive('PANELCARD_CONTACT', false);\n}\n\n//-----------------------------------\n\nfunction showCompanySearchField(loObject) {\n\t{dialog.object}.showContainerWindow(loObject,'CONTAINER_COMPANYSEARCH');\n\t{dialog.object}.setFocus('COMPANYLIST_KEYWORDSEARCH');\n}\n\n//-----------------------------------\n\nfunction setControlBar(lcLayout) {\n\tvar loCBar = {dialog.object}.getControl('CONTROLBAR_HEADER');\n\tvar lcCustno = {Dialog.object}.getValue('custno');\n\tif(loCBar) {\n\t\tvar varNames = ['VP_CUSTNO'];\n\t\tvar dataValues = [lcCustno];\n\t\tloCBar.update(varNames,dataValues,false,false,false);\n\t\tloCBar.setLayout(lcLayout);\n\t}\n\tvar loCBar = {dialog.object}.getControl('CONTROLBAR_FOOTER');\n\tvar lcUserID = 'User: ' + {dialog.object}.getValue('USERID');\n\tif(loCBar) {\n//\t\tvar varNames = ['userid'];\n//\t\tvar dataValues = [lcUserID];\n//\t\tloCBar.update(varNames,dataValues,false,false,false);\n\t\tloCBar.setLayout(lcLayout);\n\t}\n}\n\n//-----------------------------------\n\nfunction deleteContact() {\n\tvar lnContID = {dialog.object}.getValue('list::COMPANYLIST::contnum');\n\t{dialog.object}.setValue('CONTID', lnContID);\n\n\t{dialog.object}.ajaxCallback('','','xbdeletecontact','','',{deviceOfflineFunction: function() {   }});\n}\n\n//-----------------------------------\n\nfunction showHistorySearchField(loObject) {\n\t{dialog.object}.showContainerWindow(loObject,'CONTAINER_HISTORYSEARCH');\n\t{dialog.object}.setFocus('SEARCH_reason');\n}\n\n//-----------------------------------\n\nfunction callHistory() {\n\tvar lcCustno = {dialog.object}.getValue('list::COMPANYLIST::custno');\n\t{dialog.object}.setValue('CUSTNO', lcCustno);\n\n\tsetControlBar('LayoutHistory');\n\t{dialog.object}.refreshListData('HISTORYLIST',{mode: 'incremental'});\n\t{dialog.object}.panelSetActive('PANELCARD_HISTORY', false);\n}\n\n//-----------------------------------\n\nfunction formatTime(date) {\n  var hours = date.getHours();\n  var minutes = date.getMinutes();\n  var ampm = hours >= 12 ? 'pm' : 'am';\n  hours = hours % 12;\n  hours = hours ? hours : 12; // the hour '0' should be '12'\n  minutes = minutes < 10 ? '0'+minutes : minutes;\n  var strTime = hours + ':' + minutes + ' ' + ampm;\n  return strTime;\n}\n\n//-----------------------------------\n\nfunction formatDate(date) {\n  return date.getMonth()+1 + \"/\" + date.getDate() + \"/\" + date.getFullYear();\n}\n\n//-----------------------------------\n\nfunction formatDateTime(date) {\n  var hours = date.getHours();\n  var minutes = date.getMinutes();\n  var ampm = hours >= 12 ? 'pm' : 'am';\n  hours = hours % 12;\n  hours = hours ? hours : 12; // the hour '0' should be '12'\n  minutes = minutes < 10 ? '0'+minutes : minutes;\n  var strTime = hours + ':' + minutes + ' ' + ampm;\n  return date.getMonth()+1 + \"/\" + date.getDate() + \"/\" + date.getFullYear() + \"  \" + strTime;\n}\n\n//-----------------------------------\n\nfunction callViewHistory() {\n\tvar lcCustno = {dialog.object}.getValue('list::COMPANYLIST::custno');\n\t{dialog.object}.setValue('CUSTNO', lcCustno);\n\n\tsetControlBar('LayoutViewHistory');\n\t{dialog.object}.panelSetActive('PANELCARD_HISTORYVIEW', false);\n}\n\n//-----------------------------------\n\nfunction createNewHistory() {\n\t//-- Create new history record\n\tvar lObj = {dialog.object}.getControl('HISTORYLIST');\n\tlObj.newDetailViewRecord();\n\n\t//-- Default system maintained fields\n\tvar lcCustno = {dialog.object}.getValue('list::COMPANYLIST::custno');\n\tvar lnContnum = {dialog.object}.getValue('list::COMPANYLIST::contnum');\n\tvar lcUser = {dialog.object}.getValue('USERID');\n\t{dialog.object}.setValue('CUSTNO', lcCustno);\n\t{dialog.object}.setValue('HISTCUSTNO', lcCustno);\n\t{dialog.object}.setValue('CONTNUM', lnContnum);\n\t{dialog.object}.setValue('CONTID', lnContnum);\n\t{dialog.object}.setValue('ADDUSER', lcUser);\n\n\tvar ltCurDateTime = new Date();\n\tvar ldDate = formatDate(ltCurDateTime);\n\tvar lcTime = formatTime(ltCurDateTime);\n\tvar lcCurTime = formatDateTime(ltCurDateTime);\n\t{dialog.object}.setValue('ADDDATE', ldDate);\n\t{dialog.object}.setValue('ADDTIME', lcTime);\n\t{dialog.object}.setValue('CONTDATE', lcCurTime);\n}\n\n//-----------------------------------\n\nfunction showPhoneNumbers(loObject) {\n\tvar lcPhone = {dialog.object}.getValue('list::COMPANYLIST::phone');\n\tvar lcDirect = {dialog.object}.getValue('list::COMPANYLIST::contphone');\n\tvar lcCell = {dialog.object}.getValue('list::COMPANYLIST::contcell');\n\t{dialog.object}.setValue('PHONE', lcPhone);\n\t{dialog.object}.setValue('CONTPHONE', lcDirect);\n\t{dialog.object}.setValue('CONTCELL', lcCell);\n\n\tvar lObj = {dialog.object}.getControl('BUTTON_MAINPHONE');\n\tlObj.html = 'M:' + lcPhone;\n\tlObj.refresh();\n\tvar lObj = {dialog.object}.getControl('BUTTON_DIRECTPHONE');\n\tlObj.html = 'D:' + lcDirect;\n\tlObj.refresh();\n\tvar lObj = {dialog.object}.getControl('BUTTON_CELLPHONE');\n\tlObj.html = 'C:' + lcCell;\n\tlObj.refresh();\n\t{dialog.object}.showContainerWindow(loObject,'CONTAINER_PHONENUMBERS');\n}\n\n\n//-----------------------------------\n\nfunction callHistoryScreen() {\n\tvar llOnline = {dialog.Object}._getOnlineStatus();\n\tvar lcCustno = {dialog.object}.getValue('list::COMPANYLIST::custno');\n\t{dialog.object}.setValue('CUSTNO', lcCustno);\n\n\tif(llOnline == true) {\n\t\t{dialog.object}.ajaxCallback('','','xbcallHistory','','',{deviceOfflineFunction: function() {   }});\t\n\t} else {\n\t\talert('Currently offline.  ERP options are limited to online only.');\n\t}\n}\n\n//-----------------------------------\n\nfunction callOrders(lnType) {\n\tvar lcCustno = {dialog.object}.getValue('list::COMPANYLIST::custno');\n\t{dialog.object}.setValue('CUSTNO', lcCustno);\n\n\tvar lcFilter = '';\n\tvar lcLayout = '';\n\tvar loObj = {dialog.object}.getControl('ORDERLIST');\n\tvar llOnline = {dialog.Object}._getOnlineStatus();\n\n\tvar options = {\n\t\tkeepFocusOnCurrentSelection: true,\n\t\tsetFocusToValue: '',\n\t\trefreshDependentLists: false,\n\t\tonlyRefreshDependentLists: false,\n\t\tpreserveCurrentFilterOrder: false\n\t};\n\t\n\tif(llOnline == true) {\n\t\t{dialog.object}.refreshListData('ORDERLIST',options);\t\n\t\tif(lnType == 1) {\n\t\t\tloObj.setFilter(function(data) {\n\t\t\t\tif(data.sotype == 'B') {return false; }\n\t\t\t\telse {return true;}\n\t\t\t});\n\t\t\tlcLayout = 'LayoutOrders';\n\t\t} else {\n\t\t\tloObj.setFilter(function(data) {\n\t\t\t\tif(data.sotype == 'B') {return true; }\n\t\t\t\telse {return false;}\n\t\t\t});\n\t\t\tlcLayout = 'LayoutBids';\n\t\t}\n\t\tsetControlBar(lcLayout);\n\t\t{dialog.object}.panelSetActive('PANELCARD_ORDERS', false);\n\t} else {\n\t\talert('Currently offline.  ERP options are limited to online only.');\n\t}\n}\n//-----------------------------------\n\nfunction formatCurrency(amount) {\n\treturn numeral(amount).format('($0,0.00)')\n}\n\n//-----------------------------------\n\nfunction filterCompanyList() {\n\tvar searchFor = {dialog.object}.getValue('COMPANYLIST_KEYWORDSEARCH');\n\tvar listObj = {dialog.object}.getControl('COMPANYLIST');\n\tlistObj.filterListClientSide(searchFor);\n\t{dialog.object}.hideContainerWindow('CONTAINER_COMPANYSEARCH');\n}\n\n//-----------------------------------\n\n\nfunction loadCompany() {\n//\t{dialog.object}.setValue('HISTORYFILTER', '');\n\tfilterCompanyList();\n//\tfilterHistoryList();\n\tvar options = {\n\t\tkeepFocusOnCurrentSelection: true,\n\t\trefreshDependentLists: true,\n\t\tonlyRefreshDependentLists: false\n\t};\n\t{dialog.object}.refreshListData('COMPANYLIST',options);\n\tcallCompany();\n}\n\n//-----------------------------------\n\nfunction callInvoices() {\n\tvar lcCustno = {dialog.object}.getValue('list::COMPANYLIST::custno');\n\t{dialog.object}.setValue('CUSTNO', lcCustno);\n\n\tsetControlBar('LayoutInvoices');\n\tvar lObj = {dialog.object}.getControl('INVOICESLIST');\n\tvar llOnline = {dialog.Object}._getOnlineStatus();\n\n\tif(llOnline == true) {\n\t\tlObj.setGroupCollapse({groups: 'all'},true,false); // collapse all groups without animation\n\t\n\t\t//Refresh Invoice List\n\t\tvar options = {\n\t\t\tkeepFocusOnCurrentSelection: false,\n\t\t\trefreshDependentLists: false,\n\t\t\tonlyRefreshDependentLists: false\n\t\t};\n\t\t{dialog.object}.refreshListData('INVOICESLIST',options);\n\n\t\t{dialog.object}.panelSetActive('PANELCARD_INVOICES', false);\n\t} else {\n\t\talert('Currently offline.  ERP options are limited to online only.');\n\t}\n}\n\n//-----------------------------------\n\nfunction filterHistoryList() {\n\tvar searchFor = {dialog.object}.getValue('SEARCH_reason');\n\tvar listObj = {dialog.object}.getControl('HISTORYLIST');\n\tlistObj.filterListClientSide(searchFor);\n\t{dialog.object}.hideContainerWindow('CONTAINER_HISTORYSEARCH');\n}\n\n//-----------------------------------\n\nfunction filterInvoiceList() {\n\tvar searchFor = {dialog.object}.getValue('INVOICELIST_FILTER');\n\tvar listObj = {dialog.object}.getControl('INVOICESLIST');\n\tlistObj.filterListClientSide(searchFor);\n\t{dialog.object}.hideContainerWindow('CONTAINER_INVOICEFILTER');\n}\n\n//-----------------------------------\n\nfunction showInvoiceFilter(loObject) {\n\t{dialog.object}.showContainerWindow(loObject,'CONTAINER_INVOICEFILTER');\n\t{dialog.object}.setFocus('INVOICELIST_FILTER');\n}\n\n//-----------------------------------\n\nfunction showOrderFilter(loObject) {\n\t{dialog.object}.showContainerWindow(loObject,'CONTAINER_ORDERFILTER');\n\t{dialog.object}.setFocus('ORDERLIST_FILTER');\n}\n\n//-----------------------------------\n\nfunction filterOrderList() {\n\tvar searchFor = {dialog.object}.getValue('ORDERLIST_FILTER');\n\tvar listObj = {dialog.object}.getControl('ORDERLIST');\n\tlistObj.filterListClientSide(searchFor);\n\t{dialog.object}.hideContainerWindow('CONTAINER_ORDERFILTER');\n}\n\n//-----------------------------------\n\nfunction callViewNote() {\n\tvar lcNote = {dialog.object}.getValue('list::COMPANYLIST::cstmemo');\n\t{dialog.object}.setValue('CSTMEMO', lcNote);\n\tsetControlBar('LayoutViewNote');\n\t{dialog.object}.panelSetActive('PANELCARD_CUSTNOTE', false);\n}\n\n//-----------------------------------\n\nfunction refreshData() {\n\tvar listObj = {dialog.object}.getControl('COMPANYLIST');\n\tvar llOnline = {dialog.Object}._getOnlineStatus();\n\t\n\tif(llOnline == true) {\n\t\tvar flag = listObj.listIsDirty();\n\t\tif(flag && confirm('Records have been added or changed.  Synchronize unsaved?  NOTE: Cancel will discard unsaved information.')) { \n//\t\tif(flag) { \n\t\t\tA5.executeThisThenThat(synchLists, refreshLists);\n\t\t} else {\n\t\t\trefreshLists();\n\t\t}\n\t} else {\n\t\talert('You are currently offline.  Cannot refresh data.');\n\t}\n}\n\n//-----------------------------------\n\nfunction synchLists() {\n//\tvar lisObj = {dialog.object}.getControl('HISTORYLIST');\n//\tvar flag = listObj.listIsDirty();\n//\tif (flag) {\n//\t\tA5.executeThisThenThat(synchHistory, synchAll);\n//\t} else {\n\t\tsynchAll();\n//\t}\n}\n\n//-----------------------------------\n\nfunction synchHistory() {\n//\t{dialog.object}.saveListEdits('HISTORYLIST',{rows: 'allRows'});\n//\t{dialog.object}.saveListEdits('HISTORYLIST',{rows: 'allRows', ajax: { timeOut: 15000, onAjaxFail: function() { } , onDeviceOffline: function() { } } });\n\t{dialog.object}.saveListEdits('HISTORYLIST',{rows: 'current', ajax: { timeOut: 15000, onAjaxFail: function() { } , onDeviceOffline: function() { } } });\n}\n\n//-----------------------------------\n\nfunction synchAll() {\n\t{dialog.object}.synchronizeLists();\n}\n\n//-----------------------------------\n\nfunction refreshLists() {\n\t{dialog.object}.refreshListData('COMPANYLIST',{mode: 'incremental'});\n}\n\n//-----------------------------------\n\nfunction saveHistory() {\n\t//Save record to list\n\tvar lObj = {dialog.object}.getControl('HISTORYLIST');\n\tif(lObj.selection[0] != 'undefined') { \n\t\tlObj._selectedRow = lObj.selection[0];\n\t}\n\tlObj.updateListFromUXControls();\n\tsetTimeout(function() {}, 500);\n}\n\n//-----------------------------------\n\nfunction saveContact() {\n\tvar llOnline = {dialog.Object}._getOnlineStatus();\n\t\n\tif(llOnline == true) {\n\t\t{dialog.object}.ajaxCallback('','','xbsavecontact','','',{deviceOfflineFunction: function() {   }});\t\n\t} else {\n\t\talert('Cannot save contact information when not online.  Save cancelled.');\n\t\tcallCompany();\n\t}\n}\n\n//-----------------------------------\n\n",
         "hasArguments": true,
         "layoutType": "ContainerWidth",
         "previewMode": "MobileDevice",
@@ -178,7 +178,7 @@
         "info": {
             "createdBy": "RLewis",
             "dateCreated": "2019-1-3",
-            "dateLastEdited": "2019-9-19"
+            "dateLastEdited": "2019-10-7"
         },
         "flagShowCommentsInTree": true,
         "treeCommentOffset": "6",
@@ -624,10 +624,6 @@
                 "repeatingSectionParentId": -1,
                 "displayODtree": "{B=White,Light Blue}{I:'vertLine'}{I:'vertLine'}{Data=996bfe17-ba16-491d-a8bf-fd5abf73b454}{I:'$$control.edit'} [USERID] ¶",
                 "crc": "4294923479",
-                "indentTree": 2,
-                "parentIsCollapsed": false,
-                "inPanelCard": true,
-                "inTreeControl": false,
                 "v": {
                     "controlType": "Textbox",
                     "variableName": "USERID",
@@ -636,12 +632,14 @@
                     "watermark": {
                         "text": "<FieldLabel>"
                     },
+                    "precalc": {
+                        "javascriptAbstractSetupCode": ""
+                    },
                     "lookup": {
                         "editCombo": {
                             "openLookupOnFocus": false
                         }
                     },
-                    "textboxSubTheme": "",
                     "textboxAutocorrect": true,
                     "textboxAutoCapitalize": true,
                     "label": "User ID:",
@@ -664,8 +662,6 @@
                         },
                         "type": "Mask"
                     },
-                    "getFunction": "",
-                    "setFunction": "",
                     "onChange_ValidationOption": "Client-side only",
                     "dataBinding": {
                         "updateable": true,
@@ -680,11 +676,13 @@
                             "inkunits": 1
                         }
                     },
+                    "javascript": {
+                        "onkeypress": "if(event.keyCode==13){\n\tvar lcUser = {dialog.object}.getValue('USERID');\n\tlcUser = lcUser.toUpperCase();\n\t{dialog.object}.setValue('USERID', lcUser);\n\t{dialog.object}.setFocus('PASSWORD');\n} else {\n    return;\n}"
+                    },
+                    "textboxSubTheme": "",
+                    "getFunction": "",
+                    "setFunction": "",
                     "datePicker": {
-                        "friendlyDisplay": {
-                            "enabled": false,
-                            "settingsJSON": ""
-                        },
                         "displayTimePicker": false,
                         "openMethod": "ClickIcon",
                         "dateFormat": "<Default>",
@@ -701,29 +699,31 @@
                             "mask": ""
                         },
                         "timePickerOptionsDefined": false,
-                        "display": false
+                        "display": false,
+                        "friendlyDisplay": {
+                            "enabled": false,
+                            "settingsJSON": ""
+                        }
                     },
-                    "javascript": {
-                        "onkeypress": "if(event.keyCode==13){\n\tvar lcUser = {dialog.object}.getValue('USERID');\n\tlcUser = lcUser.toUpperCase();\n\t{dialog.object}.setValue('USERID', lcUser);\n\t{dialog.object}.setFocus('PASSWORD');\n} else {\n    return;\n}"
+                    "displayAsSlider": false,
+                    "flags": {
+                        "clientSideDefinition": false
                     },
                     "specialtype": "None",
                     "specialtypeJSON": "",
-                    "displayAsSlider": false,
                     "listView": {
                         "class": ""
-                    },
-                    "precalc": {
-                        "javascriptAbstractSetupCode": ""
-                    },
-                    "flags": {
-                        "clientSideDefinition": false
                     }
                 },
+                "indentTree": 2,
                 "precalc": {
                     "ControlHTML": "<div class=\"A5CWLayout\" style=\"width: 100%\" >\n\t<!--LblS--><label id=\"{grid.componentname}.LBL.R{grid.rownumber}.USERID\" for=\"{grid.componentname}.V.R{grid.rownumber}.USERID\" title=\"\" class=\"[class.dialogFieldLabel]\" style=\"float: left; width: __global.labelWidth__; box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; -webkit-box-sizing: border-box;\">User ID:</label>\n<!--LblE--><!--FldS--><div style=\"margin-left: __global.labelWidth__ ;\"><input\ttype=\"text\" id=\"{grid.componentname}.V.R{grid.rownumber}.USERID\" title=\"\"     class=\"[class.dialogInput]\" style=\"width: 100%; box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; -webkit-box-sizing: border-box;\"  onkeypress=\"if(event.keyCode==13){ \tvar lcUser = {dialog.object}.getValue('USERID'); \tlcUser = lcUser.toUpperCase(); \t{dialog.object}.setValue('USERID', lcUser); \t{dialog.object}.setFocus('PASSWORD'); } else {     return; }\"   name=\"V.R{grid.rownumber}.USERID\"    value=\"\"    />\n</div><!--FldE-->\n</div><!--breakbegin--><br  style=\"clear:both; \" /><!--breakend-->",
                     "DesignViewHTML": "",
                     "columnInfo": "'USERID': {info: {controlType: 'Textbox'}, hiddenVal: false, type: 'input,label', isCalc: false, hlp: '', isArray: false, dataType: 'C'  }\n"
-                }
+                },
+                "parentIsCollapsed": false,
+                "inPanelCard": true,
+                "inTreeControl": false
             },
             {
                 "controlType": "dialog_formcontrol",
@@ -1144,6 +1144,10 @@
                 "repeatingSectionParentId": -1,
                 "displayODtree": "{B=White,Light Blue}{I:'vertLine'}{I:'vertLine'}{Data=99827528_1ad8_4cbd_a6d5_331fd7d83ca1}{I:'$$control.browse'} [COMPANYLIST]",
                 "crc": "4294950993",
+                "indentTree": 2,
+                "parentIsCollapsed": false,
+                "inPanelCard": true,
+                "inTreeControl": false,
                 "v": {
                     "controlType": "List",
                     "variableName": "COMPANYLIST",
@@ -1151,18 +1155,12 @@
                     "watermark": {
                         "text": "<FieldLabel>"
                     },
-                    "precalc": {
-                        "javascriptAbstractSetupCode": "",
-                        "controlHTMLInPanelCard": "in panel card",
-                        "javascript_listViewData": "{dialog.object}._listViewData['COMPANYLIST'] = [[dialog.listViewData.COMPANYLIST]]; ",
-                        "javascript_listViewSettings": "{dialog.object}._listViewSettings['COMPANYLIST'] = [[dialog.listViewSettings.COMPANYLIST]]; ",
-                        "javascript_listview": "{dialog.object}._controls['COMPANYLIST'] =  { type: 'list',  data: {dialog.object}._listViewData['COMPANYLIST'],  onInitialize: function() { \n\t\tvar pe = $(this.contId).parentElement;\n\t\tif(typeof this.listVariableName != 'undefined') { \n\t\t\tvar _cn = '{dialog.componentName}_' + this.listVariableName.toUpperCase() + '_2';\n\t\t\t$acn(pe,_cn);\n\t\t}\n\t\n},  settings: {dialog.object}._listViewSettings['COMPANYLIST'] }"
-                    },
                     "lookup": {
                         "editCombo": {
                             "openLookupOnFocus": false
                         }
                     },
+                    "textboxSubTheme": "",
                     "textboxAutocorrect": true,
                     "textboxAutoCapitalize": true,
                     "label": "COMPANYLIST",
@@ -1186,6 +1184,8 @@
                         },
                         "type": "Mask"
                     },
+                    "getFunction": "",
+                    "setFunction": "",
                     "onChange_ValidationOption": "Client-side only",
                     "dataBinding": {
                         "updateable": true,
@@ -1200,24 +1200,17 @@
                             "inkunits": 1
                         }
                     },
-                    "textboxSubTheme": "",
-                    "getFunction": "",
-                    "setFunction": "",
                     "datePicker": {
-                        "displayTimePicker": false,
-                        "display": false,
                         "friendlyDisplay": {
                             "enabled": false,
                             "settingsJSON": ""
-                        }
-                    },
-                    "displayAsSlider": false,
-                    "flags": {
-                        "clientSideDefinition": false
+                        },
+                        "display": false,
+                        "displayTimePicker": false
                     },
                     "listView": {
-                        "class": "<Default>",
                         "listGUID": "f63bf5b9-7520-483f-91c8-6a137e6fa94a",
+                        "class": "<Default>",
                         "style": "",
                         "dataSourceType": "SQL",
                         "overrides": "",
@@ -5223,9 +5216,19 @@
                             "javascriptOnOrientationChange": ""
                         },
                         "optimizeJSONSize": true
+                    },
+                    "displayAsSlider": false,
+                    "precalc": {
+                        "controlHTMLInPanelCard": "in panel card",
+                        "javascript_listViewData": "{dialog.object}._listViewData['COMPANYLIST'] = [[dialog.listViewData.COMPANYLIST]]; ",
+                        "javascript_listViewSettings": "{dialog.object}._listViewSettings['COMPANYLIST'] = [[dialog.listViewSettings.COMPANYLIST]]; ",
+                        "javascript_listview": "{dialog.object}._controls['COMPANYLIST'] =  { type: 'list',  data: {dialog.object}._listViewData['COMPANYLIST'],  onInitialize: function() { \n\t\tvar pe = $(this.contId).parentElement;\n\t\tif(typeof this.listVariableName != 'undefined') { \n\t\t\tvar _cn = '{dialog.componentName}_' + this.listVariableName.toUpperCase() + '_2';\n\t\t\t$acn(pe,_cn);\n\t\t}\n\t\n},  settings: {dialog.object}._listViewSettings['COMPANYLIST'] }",
+                        "javascriptAbstractSetupCode": ""
+                    },
+                    "flags": {
+                        "clientSideDefinition": false
                     }
                 },
-                "indentTree": 2,
                 "precalc": {
                     "ControlHTML": "<div class=\"A5CWLayout\" style=\"width: 4in\" >\n\t<!--FldS--><!--JSControlStart--><input type=\"hidden\" id=\"{grid.componentname}.V.R{grid.rownumber}.COMPANYLIST\" name=\"V.R{grid.rownumber}.COMPANYLIST\" /><!--JSControlEnd-->\n<div  class=\"[theme:listBox.base.className|{dialog.style}List]\"   style=\"padding:0px; \"  >\n\t<div id=\"{grid.componentname}.V.R{grid.rownumber}.COMPANYLIST.CONTROL\"  class=\"{grid.componentName}_COMPANYLIST <Default>\" style=\"overflow: auto; width: 100%; height: 6in; \"></div>\n</div>\n<!--FldE-->\n</div>",
                     "DesignViewHTML": "",
@@ -5236,10 +5239,7 @@
                     "isIncrementalRefresh": false,
                     "js_afterListInitialize": "var listObj = {UXPRERENDEREDALIAS}_DlgObj.getControl('COMPANYLIST');\nif(listObj) listObj._state.recordCount = 0;\nif(listObj) listObj._state.recordCountFormatted = '0';\nif(listObj) listObj._state.lastBreakValue = '<None>';\nif(listObj) listObj._state.pageCount = 0;\nif(listObj) listObj._state.pageSize = 40;\nif(listObj) {var ele = $('{UXPRERENDEREDALIAS}.COMPANYLIST.RECORDCOUNT'); if(ele) ele.innerHTML = listObj._state.recordCountFormatted;};\nif(listObj) listObj._state.paginated = false;\n\nif(listObj) listObj._state.filter = '';\nif(listObj) listObj._state.having = '';\nif(listObj) listObj._state.order = '';\nif(listObj) listObj._state.filterParameters = '';\nif(listObj) listObj._state.highlight = {  };\nif(listObj) listObj._state.whereClause = '';\nif(listObj) listObj._state.whereParameters = '';\n\t\t\n\t\tvar flagPersist = false;\n\t\tif(typeof listObj._flagPersistDataOK != 'undefined') { \n\t\t\tif(listObj._flagPersistDataOK) { \n\t\t\t\tvar data = listObj._data;\n\t\t\t\tlistObj.persistToStorage({mode:'populate', data: data, submode: 'ListViewData'});\n\t\t\t}\n\t\t}\n\t\t\n\t\t\n;\n{UXPRERENDEREDALIAS}_DlgObj._list_executeEvent('COMPANYLIST','afterRenderComplete',{});\n\nif(listObj._refreshStateMessages) listObj._refreshStateMessages();",
                     "list_CapturedFieldValueFromFirstRow": ""
-                },
-                "parentIsCollapsed": false,
-                "inPanelCard": true,
-                "inTreeControl": false
+                }
             },
             {
                 "controlType": "layout_directive_PanelCardEnd",
@@ -11320,6 +11320,10 @@
                 "repeatingSectionParentId": -1,
                 "displayODtree": "{B=White,Light Blue}{I:'vertLine'}{I:'vertLine'}{Data=519cc9c5_e4fa_45a5_a7a5_a90c5c113288}{I:'$$control.browse'} [ORDERLIST]",
                 "crc": "4294962745",
+                "indentTree": 2,
+                "parentIsCollapsed": false,
+                "inPanelCard": true,
+                "inTreeControl": false,
                 "v": {
                     "controlType": "List",
                     "variableName": "ORDERLIST",
@@ -11327,18 +11331,12 @@
                     "watermark": {
                         "text": "<FieldLabel>"
                     },
-                    "precalc": {
-                        "javascriptAbstractSetupCode": "",
-                        "controlHTMLInPanelCard": "in panel card",
-                        "javascript_listViewData": "{dialog.object}._listViewData['ORDERLIST'] = [[dialog.listViewData.ORDERLIST]]; ",
-                        "javascript_listViewSettings": "{dialog.object}._listViewSettings['ORDERLIST'] = [[dialog.listViewSettings.ORDERLIST]]; ",
-                        "javascript_listview": "{dialog.object}._controls['ORDERLIST'] =  { type: 'list',  data: {dialog.object}._listViewData['ORDERLIST'],  onInitialize: function() { \n\t\tvar pe = $(this.contId).parentElement;\n\t\tif(typeof this.listVariableName != 'undefined') { \n\t\t\tvar _cn = '{dialog.componentName}_' + this.listVariableName.toUpperCase() + '_2';\n\t\t\t$acn(pe,_cn);\n\t\t}\n\t\n},  settings: {dialog.object}._listViewSettings['ORDERLIST'] }"
-                    },
                     "lookup": {
                         "editCombo": {
                             "openLookupOnFocus": false
                         }
                     },
+                    "textboxSubTheme": "",
                     "textboxAutocorrect": true,
                     "textboxAutoCapitalize": true,
                     "label": "ORDERLIST2",
@@ -11361,6 +11359,8 @@
                         },
                         "type": "Mask"
                     },
+                    "getFunction": "",
+                    "setFunction": "",
                     "onChange_ValidationOption": "Client-side only",
                     "dataBinding": {
                         "updateable": true,
@@ -11375,24 +11375,17 @@
                             "inkunits": 1
                         }
                     },
-                    "textboxSubTheme": "",
-                    "getFunction": "",
-                    "setFunction": "",
                     "datePicker": {
-                        "displayTimePicker": false,
-                        "display": false,
                         "friendlyDisplay": {
                             "enabled": false,
                             "settingsJSON": ""
-                        }
-                    },
-                    "displayAsSlider": false,
-                    "flags": {
-                        "clientSideDefinition": false
+                        },
+                        "display": false,
+                        "displayTimePicker": false
                     },
                     "listView": {
-                        "class": "<Default>",
                         "listGUID": "83f124ef-0d0e-49f0-8979-f4c538595266",
+                        "class": "<Default>",
                         "style": "",
                         "dataSourceType": "SQL",
                         "overrides": "",
@@ -14762,14 +14755,24 @@
                         "precalc": {
                             "javascriptOnOrientationChange": ""
                         },
-                        "optimizeJSONSize": true,
                         "previewMode": false,
                         "__xbjs": "ps.__checkedImage = \"svgIcon=#alpha-icon-checkCircle:icon,24\"\nps.__uncheckedImage = \"svgIcon=#alpha-icon-circle:icon,24\"",
                         "_templateCSS": "\n",
-                        "allchildren": ""
+                        "allchildren": "",
+                        "optimizeJSONSize": true
+                    },
+                    "displayAsSlider": false,
+                    "precalc": {
+                        "controlHTMLInPanelCard": "in panel card",
+                        "javascript_listViewData": "{dialog.object}._listViewData['ORDERLIST'] = [[dialog.listViewData.ORDERLIST]]; ",
+                        "javascript_listViewSettings": "{dialog.object}._listViewSettings['ORDERLIST'] = [[dialog.listViewSettings.ORDERLIST]]; ",
+                        "javascript_listview": "{dialog.object}._controls['ORDERLIST'] =  { type: 'list',  data: {dialog.object}._listViewData['ORDERLIST'],  onInitialize: function() { \n\t\tvar pe = $(this.contId).parentElement;\n\t\tif(typeof this.listVariableName != 'undefined') { \n\t\t\tvar _cn = '{dialog.componentName}_' + this.listVariableName.toUpperCase() + '_2';\n\t\t\t$acn(pe,_cn);\n\t\t}\n\t\n},  settings: {dialog.object}._listViewSettings['ORDERLIST'] }",
+                        "javascriptAbstractSetupCode": ""
+                    },
+                    "flags": {
+                        "clientSideDefinition": false
                     }
                 },
-                "indentTree": 2,
                 "precalc": {
                     "ControlHTML": "<div class=\"A5CWLayout\" style=\"width: 4in\" >\n\t<!--LblS--><label id=\"{grid.componentname}.LBL.R{grid.rownumber}.ORDERLIST\" for=\"{grid.componentname}.V.R{grid.rownumber}.ORDERLIST\" title=\"\" class=\"[class.dialogFieldLabel]\" style=\"float: left; width: __global.labelWidth__; box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; -webkit-box-sizing: border-box;\">ORDERLIST2</label>\n<!--LblE--><!--FldS--><div style=\"margin-left: __global.labelWidth__ ;\"><!--JSControlStart--><input type=\"hidden\" id=\"{grid.componentname}.V.R{grid.rownumber}.ORDERLIST\" name=\"V.R{grid.rownumber}.ORDERLIST\" /><!--JSControlEnd-->\n<div  class=\"[theme:listBox.base.className|{dialog.style}List]\"   style=\"padding:0px; \"  >\n\t<div id=\"{grid.componentname}.V.R{grid.rownumber}.ORDERLIST.CONTROL\"  class=\"{grid.componentName}_ORDERLIST <Default>\" style=\"overflow: auto; width: 100%; height: 3in; \"></div>\n</div>\n</div><!--FldE-->\n</div>",
                     "DesignViewHTML": "",
@@ -14780,10 +14783,7 @@
                     "isIncrementalRefresh": false,
                     "js_afterListInitialize": "var listObj = {UXPRERENDEREDALIAS}_DlgObj.getControl('ORDERLIST');\nif(listObj) listObj._state.recordCount = 0;\nif(listObj) listObj._state.recordCountFormatted = '0';\nif(listObj) listObj._state.lastBreakValue = '<None>';\nif(listObj) listObj._state.pageCount = 0;\nif(listObj) listObj._state.pageSize = 20;\nif(listObj) {var ele = $('{UXPRERENDEREDALIAS}.ORDERLIST.RECORDCOUNT'); if(ele) ele.innerHTML = listObj._state.recordCountFormatted;};\nif(listObj) listObj._state.paginated = false;\n\nif(listObj) listObj._state.filter = '';\nif(listObj) listObj._state.having = '';\nif(listObj) listObj._state.order = '';\nif(listObj) listObj._state.filterParameters = '';\nif(listObj) listObj._state.highlight = {  };\nif(listObj) listObj._state.whereClause = '';\nif(listObj) listObj._state.whereParameters = '';\n\t\t\n\t\tvar flagPersist = false;\n\t\tif(typeof listObj._flagPersistDataOK != 'undefined') { \n\t\t\tif(listObj._flagPersistDataOK) { \n\t\t\t\tvar data = listObj._data;\n\t\t\t\tlistObj.persistToStorage({mode:'populate', data: data, submode: 'ListViewData'});\n\t\t\t}\n\t\t}\n\t\t\n\t\t\n;\n{UXPRERENDEREDALIAS}_DlgObj._list_executeEvent('ORDERLIST','afterRenderComplete',{});\n\nif(listObj._refreshStateMessages) listObj._refreshStateMessages();",
                     "list_CapturedFieldValueFromFirstRow": ""
-                },
-                "parentIsCollapsed": false,
-                "inPanelCard": true,
-                "inTreeControl": false
+                }
             },
             {
                 "controlType": "layout_directive_PanelCardEnd",
@@ -21997,9 +21997,9 @@
         "keyboardShortcutsJSON": "",
         "preRenderWarningMessageShow": true,
         "autoSetPreRenderOnForAllUX": true,
-        "selected": "996bfe17-ba16-491d-a8bf-fd5abf73b454\n",
+        "selected": "99827528_1ad8_4cbd_a6d5_331fd7d83ca1\n",
         "designPaneIndex": 1,
-        "masterPaneC": "controls",
+        "masterPaneC": "JavascriptFunctions",
         "serverSideEventIndex": 3,
         "clientSideEventIndex": 35,
         "clientSideEventIndexC": "35",
@@ -22017,7 +22017,7 @@
         "alphaFiveBuildNumber": "12",
         "openedFromTemplate": false,
         "builtWithVersionNumer": 1,
-        "_buildCount": "490",
+        "_buildCount": "491",
         "securityEnabled": false,
         "showHideIsUsed": false,
         "precalc": {
@@ -22184,7 +22184,7 @@
         "sassProcessor": true,
         "debugMode": false,
         "__jsLibraries": "<script type=\"text/javascript\" src=\"javascript/a5.js\"></script>\n<script type=\"text/javascript\" src=\"javascript/a5_url.js\"></script>\n",
-        "A5SaveTimeStamp": "20190919072901800",
+        "A5SaveTimeStamp": "20191007105435737",
         "a_actionJavascript": [
             {
                 "actionGuid": "b5cacce0-c4d7-4e0c-ab73-ad97372719d0     ",
@@ -22203,8 +22203,8 @@
         "__LPhostName": "Chrome",
         "_style_isInherited": true,
         "lastbutton": "OK",
-        "__idinternalCurrentControl": "996bfe17-ba16-491d-a8bf-fd5abf73b454",
-        "__nameCurrentControl": "USERID",
+        "__idinternalCurrentControl": "99827528_1ad8_4cbd_a6d5_331fd7d83ca1",
+        "__nameCurrentControl": "COMPANYLIST",
         "__allowCascadingRecalc": true,
         "__flagHasMacro": false,
         "informixFix": false,
@@ -22285,7 +22285,7 @@
             "output": {
                 "Head": {
                     "JavaScript": "*gzip:H4sIAAAAAAAAC5WMsQ6CQBAFexP/Aa/Hq+gOOjsqf2Cznq84PPGyuyD8vSQUFlaWM5NM0CipWGVrQesMi/mBZ96tq1Ri677Cc3Me1HXB79wdD+HfAU2Sfyanun/x/bIYZOTcp5uwJGi9NSJByRzBdp1GS08QRVW1NcPe4IcSfQAk7ywxxgAAAA==",
-                    "CSS_Link": "*gzip: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",
+                    "CSS_Link": "*gzip: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",
                     "title": "*gzip:H4sIAAAAAAAAC7MpySzJSbVzSiwuVnAO8rXRh/ABIgko+xcAAAA="
                 },
                 "body": {
